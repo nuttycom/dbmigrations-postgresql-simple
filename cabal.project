@@ -1,0 +1,7 @@
+packages:
+    ./
+
+source-repository-package
+    type: git
+    location: https://github.com/nuttycom/dbmigrations.git
+    tag: 7cf4fd09caeeb4d7e19838ba7b29667ec7caf690

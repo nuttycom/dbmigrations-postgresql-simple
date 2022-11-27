@@ -1,0 +1,27 @@
+cabal-version:      3.0
+name:               dbmigrations-postgresql-simple
+version:            0.1.0.0
+
+synopsis:           Implementation of a dbmigrations `Backend` that wraps a postgresql-simple connection value.
+bug-reports:        https://github.com/nuttycom/dbmigrations-postgresql-simple/issues
+
+license:            BSD-3-Clause
+author:             Kris Nuttycombe
+maintainer:         kris@nutty.land
+
+copyright:          2022 Kris Nuttycombe
+category:           Database
+extra-source-files: CHANGELOG.md
+
+library
+  default-language: Haskell2010
+  hs-source-dirs:   src
+  build-depends:    
+    base                          >= 4   && < 5,
+    dbmigrations                  >= 2.2 && < 2.3,
+    postgresql-simple             >= 0.6 && < 0.7,
+    time                          >= 1.4,
+    string-conversions            >= 0.4,
+    text                          >= 0.11
+  exposed-modules:
+    Database.Schema.Migrations.Backend.PostgreSQL

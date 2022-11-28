@@ -1,50 +1,43 @@
-# SPDX-FileCopyrightText: 2021 Serokell <https://serokell.io/>
-#
-# SPDX-License-Identifier: CC0-1.0
-
 {
-  description = "My haskell application";
+  description = "PostgreSQL backend for dbmigrations that relies on postgresql-simple";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
+    dbmigrations.url = "github:nuttycom/dbmigrations/74ef9388b45ae73a1d9c737d9644e076fe832672";
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
+  outputs = { self, nixpkgs, flake-utils, dbmigrations }:
     flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = nixpkgs.legacyPackages.${system};
-
-        haskellPackages = pkgs.haskellPackages;
-
-        jailbreakUnbreak = pkg:
-          pkgs.haskell.lib.doJailbreak (pkg.overrideAttrs (_: { meta = { }; }));
-
-        packageName = "dbmigrations-postgresql-simple";
-
-        dbmigrations_src = pkgs.fetchFromGitHub {
-          owner = "nuttycom";
-          repo = "dbmigrations";
-          rev = "e7e7b3090e955d237e785b5afa652f4153224392";
-          hash = "sha256-gPBdRt6QcxkEd9zZ+y5DOHheK778bQET12hNCrSYqfE=";
-        };
-
-        dbmigrations_new = haskellPackages.callCabal2nix "dbmigrations" dbmigrations_src {};
-      in {
-        packages.${packageName} =
-          haskellPackages.callCabal2nix packageName self rec {
-            dbmigrations = dbmigrations_new;
+      let pkg-name = "dbmigrations-postgresql";
+          pkgs = import nixpkgs {
+            inherit system;
           };
 
-        defaultPackage = self.packages.${system}.${packageName};
+          haskell = pkgs.haskellPackages;
 
-        devShell = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            haskellPackages.haskell-language-server # you must build it with your ghc to work
-            ghcid
+          haskell-overlay = final: prev: {
+            dbmigrations = dbmigrations.defaultPackage.${system};
+            ${pkg-name} = hspkgs.callCabal2nix pkg-name ./. {};
+          };
+
+          hspkgs = haskell.override {
+            overrides = haskell-overlay;
+          };
+      in {
+        packages = pkgs;
+
+        defaultPackage = hspkgs.${pkg-name};
+
+        devShell = hspkgs.shellFor {
+          packages = p: [p.${pkg-name}];
+          root = ./.;
+          withHoogle = true;
+          buildInputs = with hspkgs; [
+            haskell-language-server
             cabal-install
           ];
-          inputsFrom = builtins.attrValues self.packages.${system};
         };
-      });
+      }
+    );
 }

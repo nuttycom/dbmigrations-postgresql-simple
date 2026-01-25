@@ -2,7 +2,7 @@
   description = "PostgreSQL backend for dbmigrations that relies on postgresql-simple";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/release-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/release-25.11";
     flake-utils.url = "github:numtide/flake-utils";
     dbmigrations = {
       url = "github:haskell-github-trust/dbmigrations/d870aa2bdc6ac219bfdd182bcada3a9534dc23a8";

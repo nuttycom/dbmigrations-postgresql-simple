@@ -3,5 +3,5 @@ packages:
 
 source-repository-package
     type: git
-    location: https://github.com/nuttycom/dbmigrations.git
-    tag: 7cf4fd09caeeb4d7e19838ba7b29667ec7caf690
+    location: https://github.com/haskell-github-trust/dbmigrations.git
+    tag: d870aa2bdc6ac219bfdd182bcada3a9534dc23a8

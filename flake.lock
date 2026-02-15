@@ -8,17 +8,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1769367998,
-        "narHash": "sha256-+asn+o0SsVU51IzQh+/sQ9CrkkdcKd8MU8pZc4jUSBM=",
+        "lastModified": 1771119693,
+        "narHash": "sha256-RlB70G6lOcPPkCqOmLX4RFje5LObvBZT/X4btoyyEM8=",
         "owner": "haskell-github-trust",
         "repo": "dbmigrations",
-        "rev": "d870aa2bdc6ac219bfdd182bcada3a9534dc23a8",
+        "rev": "6d641f169b60ecb9e9de6e7e82d4bafbcaac62ff",
         "type": "github"
       },
       "original": {
         "owner": "haskell-github-trust",
         "repo": "dbmigrations",
-        "rev": "d870aa2bdc6ac219bfdd182bcada3a9534dc23a8",
+        "rev": "6d641f169b60ecb9e9de6e7e82d4bafbcaac62ff",
         "type": "github"
       }
     },
@@ -60,11 +60,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1769367530,
-        "narHash": "sha256-EAQT/bLs9vVOat0nWLu427OAmCGwc7QC/e1XFpdtWzI=",
+        "lastModified": 1771116921,
+        "narHash": "sha256-CID/eq9RDzCECT6acXMb9Nu1I/kaYS00gvQxwECYbv8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d7ce475e6bf95e7c66c6c980b959a0445d7b9abd",
+        "rev": "5225070d41b4be8ed48a2ba1bf823b1d57bb2677",
         "type": "github"
       },
       "original": {
